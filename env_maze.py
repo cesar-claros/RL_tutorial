@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 # maze is a 2d Numpy array of floats between 0.0 to 1.0
 # 1.0 corresponds to a free cell, and 0.0 an occupied cell
 # rat = (row, col) initial rat position (defaults to (0,0))
+rat_mark = 0.5
 
 class Qmaze(object):
     def __init__(self, maze, rat=(0,0)):

@@ -58,7 +58,7 @@ class Qmaze(object):
             elif action == DOWN:
                 nrow += 1
         else:                  # invalid action, no change in rat position
-            mode = 'invalid'
+            nmode = 'invalid'
 
         # new state
         self.state = (nrow, ncol, nmode)

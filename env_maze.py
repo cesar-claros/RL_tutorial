@@ -67,16 +67,19 @@ class Qmaze(object):
         rat_row, rat_col, mode = self.state
         nrows, ncols = self.maze.shape
         if rat_row == nrows-1 and rat_col == ncols-1:
-            return 1.0
-        if mode == 'blocked':
-            return self.min_reward - 1
-        if (rat_row, rat_col) in self.visited:
-            return -0.25
-        if mode == 'invalid':
-            return -0.75
-        if mode == 'valid':
-            return -0.04
-
+            reward = 1.0
+        else:
+            if mode == 'blocked':
+                reward = self.min_reward - 1
+            elif mode == 'invalid':
+                reward = -0.75
+            elif mode == 'valid' and ((rat_row, rat_col) not in self.visited):
+                reward = -0.04
+            elif mode == 'valid' and ((rat_row, rat_col) in self.visited):
+                reward = -0.25
+            else:
+                reward = np.nan
+        return reward
     def act(self, action):
         self.update_state(action)
         reward = self.get_reward()
